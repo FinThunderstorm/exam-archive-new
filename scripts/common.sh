@@ -23,7 +23,7 @@ function compose_cmd() {
     required_command docker
     required_command docker-compose
 
-    if [[ "$ENV" == "test" ]]
+    if [[ "$ENV" == "test" || "$ENV" == "build" ]]
     then
         docker-compose -f docker-compose.yml "$@"
     else
