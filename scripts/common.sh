@@ -202,7 +202,7 @@ function get_environment_variables() {
 
         export OTEL_SERVICE_NAME=${OTEL_SERVICE_NAME:-"tarpisto"}
         export OTEL_ENDPOINT=${OTEL_ENDPOINT:-"http://localhost/notexisting"}
-        export OTEL_AUTHORIZATION=${OTEL_AUTHORIZATION:-"http://localhost/notexisting"}
+        export OTEL_AUTHORIZATION=${OTEL_AUTHORIZATION:-"authorizationkey"}
     fi
 
     # Set environment dependant variables
