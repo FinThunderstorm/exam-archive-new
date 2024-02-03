@@ -99,9 +99,9 @@ export const getSessionUser = async () => {
       return {
         id: 1,
         name: 'dev',
-        role: UserRole.Kayttaja,
+        role: UserRole.Yllapitaja,
         membership: UserMembership.Jasen,
-        rights: roleRights[UserRole.Kayttaja]
+        rights: roleRights[UserRole.Yllapitaja]
       }
     }
     redirect('/auth/signin')
