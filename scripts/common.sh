@@ -7,9 +7,9 @@ function validate_env() {
         exit 1
     fi
 
-    if [[ "$ENV" != "dev" && "$ENV" != "test" && "$ENV" != "security" && "$ENV" != "local" && "$ENV" != "prod" ]]
+    if [[ "$ENV" != "dev" && "$ENV" != "test" && "$ENV" != "security" && "$ENV" != "local" && "$ENV" != "build" && "$ENV" != "prod" ]]
     then
-        echo "::error title={"ENV"}::\$ENV is not set to dev, test, security, local or production. Exiting."
+        echo "::error title={"ENV"}::\$ENV is not set to dev, test, security, local, build or production. Exiting."
         exit 1
     fi
 }
