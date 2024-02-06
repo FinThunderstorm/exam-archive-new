@@ -160,7 +160,12 @@ function build_docker_image() {
 
     if [[ -z ${DOCKER_INFO-} ]]
     then
-        DOCKER_INFO='{ "target": { "docker-metadata-action": { "tags": [ "tarpisto/tarpisto:latest" ] } } } '
+        if [[ "$ENV" == "local" || "$ENV" == "security" ]]
+        then
+            DOCKER_INFO='{ "target": { "docker-metadata-action": { "tags": [ "tarpisto/tarpisto-local:latest" ] } } } '
+        else
+            DOCKER_INFO='{ "target": { "docker-metadata-action": { "tags": [ "tarpisto/tarpisto:latest" ] } } } '
+        fi
         echo "::group::Print combined bake file"
         docker buildx bake -f docker-bake.hcl -f - <<< ${DOCKER_INFO} --print
         echo "::endgroup::"
@@ -234,4 +239,5 @@ function get_environment_variables() {
 
     # Set environment variables for all environments
     export NEXT_TELEMETRY_DISABLED=1
+    export NEXT_OTEL_VERBOSE=1
 }

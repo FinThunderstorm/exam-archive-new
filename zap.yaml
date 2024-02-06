@@ -1,58 +1,63 @@
 env:
   contexts:
-  - name: tarpisto
-    excludePaths: []
-    urls:
-    - http://tarpisto:9000/
+    - name: tarpisto
+      excludePaths: []
+      urls:
+        - http://tarpisto:9020/
+        - http://tarpisto:9020/courses/create
+        - http://tarpisto:9020/courses/3-advanced-course-in-machine-learning
+        - http://tarpisto:9020/courses/3-advanced-course-in-machine-learning/upload
+        - http://tarpisto:9020/courses/3-advanced-course-in-machine-learning/manage
+        - http://tarpisto:9020/files/1842/170511_Advanced_Course_in_Machine_Learning_KK.pdf/manage
   parameters:
     failOnError: true
     progressToStdout: true
 jobs:
-- type: passiveScan-config
-  parameters:
-    enableTags: false
-    maxAlertsPerRule: 5
-    scanOnlyInScope: true
-- type: spider
-  parameters:
-    context: tarpisto
-    maxDuration: 10
-    requestWaitTime: 500
-    maxDepth: 5
-    maxChildren: 10
-  tests:
-    - name: '> 10 URLs found'
-      type: 'stats'
-      statistic: 'automation.spider.urls.added'
-      operator: '>='
-      value: 10
-      onFail: 'info'
-- type: spiderAjax
-  parameters:
-    context: tarpisto
-    maxDuration: 10
-    maxCrawlDepth: 5
-    maxCrawlStates: 10
-  tests:
-    - name: '> 10 URLs found'
-      type: 'stats'
-      statistic: 'automation.spiderAjax.urls.added'
-      operator: '>='
-      value: 10
-      onFail: 'info'
-- type: passiveScan-wait
-  parameters:
-    maxDuration: 10
-- type: activeScan
-  parameters:
-    context: tarpisto
-    addQueryParam: true
-    maxAlertsPerRule: 5
-    maxRuleDurationInMins: 1
-- type: report
-  parameters:
-    reportDescription: ''
-    reportDir: /zap/wrk/
-    reportFile: test-results/security-report.md
-    reportTitle: Tärpistö ZAP Scanning Report
-    template: traditional-md
+  - type: passiveScan-config
+    parameters:
+      enableTags: false
+      maxAlertsPerRule: 5
+      scanOnlyInScope: true
+  - type: spider
+    parameters:
+      context: tarpisto
+      maxDuration: 10
+      requestWaitTime: 500
+      maxDepth: 5
+      maxChildren: 10
+    tests:
+      - name: '> 10 URLs found'
+        type: 'stats'
+        statistic: 'automation.spider.urls.added'
+        operator: '>='
+        value: 10
+        onFail: 'info'
+  - type: spiderAjax
+    parameters:
+      context: tarpisto
+      maxDuration: 10
+      maxCrawlDepth: 5
+      maxCrawlStates: 10
+    tests:
+      - name: '> 10 URLs found'
+        type: 'stats'
+        statistic: 'automation.spiderAjax.urls.added'
+        operator: '>='
+        value: 10
+        onFail: 'info'
+  - type: passiveScan-wait
+    parameters:
+      maxDuration: 10
+  - type: activeScan
+    parameters:
+      context: tarpisto
+      addQueryParam: true
+      maxAlertsPerRule: 5
+      maxRuleDurationInMins: 1
+  - type: report
+    parameters:
+      reportDescription: ''
+      reportDir: /zap/wrk/
+      reportFile: test-results/security-report.md
+      reportTitle: Tärpistö ZAP Scanning Report
+      template: traditional-md

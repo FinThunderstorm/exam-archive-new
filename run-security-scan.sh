@@ -45,7 +45,7 @@ function main() {
     # docker-compose -f docker-compose.yml -f docker-compose.security.yml cp security:/tmp/zap/reports/security-report.md ./test-results/security-report.md
     echo "::endgroup::"
 
-    if [[ -f "$GITHUB_STEP_SUMMARY" ]]; then
+    if [[ -f "${GITHUB_ACTIONS:-}" ]]; then
       echo "::group::Report results"
       echo "$(cat ./test-results/security-report.md)" >> $GITHUB_STEP_SUMMARY
       echo "::endgroup::"
