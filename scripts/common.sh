@@ -195,7 +195,6 @@ function get_environment_variables() {
         export USER_SERVICE_URL=${USER_SERVICE_URL:-"http://127.0.0.1:8080"}
         export USER_SERVICE_SECRET=${USER_SERVICE_SECRET:-"catlike-meringue-tying-PASTERN-bed-simply"}
 
-        export NEXTAUTH_URL=${NEXTAUTH_URL:-"http://127.0.0.1:9000"}
         export NEXTAUTH_SECRET=${NEXTAUTH_SECRET:-"catlike-meringue-tying-PASTERN-bed-simply"}
 
         export AWS_REGION=${AWS_REGION:-"eu-west-1"}
@@ -216,21 +215,31 @@ function get_environment_variables() {
         export PORT=${PORT:-"9000"}
         export APP_ENV="development"
         export NODE_ENV="development"
+        export NEXTAUTH_URL=${NEXTAUTH_URL:-"http://127.0.0.1:$PORT"}
     elif [[ "$ENV" == "test" ]]
     then
         export PORT=${PORT:-"9010"}
-        export APP_ENV="development"
+        export APP_ENV="test"
         export NODE_ENV="test"
+        export NEXTAUTH_URL=${NEXTAUTH_URL:-"http://127.0.0.1:$PORT"}
     elif [[ "$ENV" == "security" ]]
     then
         export PORT=${PORT:-"9020"}
-        export APP_ENV="development"
+        export APP_ENV="test"
         export NODE_ENV="production"
+        export NEXTAUTH_URL=${NEXTAUTH_URL:-"http://tarpisto:$PORT"}
     elif [[ "$ENV" == "local" ]]
     then
         export PORT=${PORT:-"9030"}
         export APP_ENV="development"
         export NODE_ENV="production"
+        export NEXTAUTH_URL=${NEXTAUTH_URL:-"http://127.0.0.1:$PORT"}
+    elif [[ "$ENV" == "build" ]]
+    then
+        export PORT=${PORT:-"9000"}
+        export APP_ENV="production"
+        export NODE_ENV="production"
+        export NEXTAUTH_URL=${NEXTAUTH_URL:-"http://127.0.0.1:$PORT"}
     else
         export PORT=${PORT:-"9000"}
         export APP_ENV="production"

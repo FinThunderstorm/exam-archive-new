@@ -21,6 +21,4 @@ RUN apk add --no-cache bash curl
 COPY --from=deps /usr/src/tarpisto/node_modules ./node_modules
 COPY . .
 
-EXPOSE ${PORT}
-
 CMD ["bash", "./scripts/start-prod-server.sh"]

@@ -2,9 +2,9 @@
 const path = require('path')
 
 const csp =
-  process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test'
+  process.env.NODE_ENV === 'development'
     ? ''
-    : "default-src 'self'; img-src 'self'; media-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline';"
+    : "default-src 'self'; img-src 'self'; media-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; form-action 'self'; frame-ancestors 'none';"
 
 const nextConfig = {
   distDir: `dist/${process.env.NODE_ENV}`,

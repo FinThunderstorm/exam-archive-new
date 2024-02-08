@@ -95,7 +95,7 @@ export const getSessionUser = async () => {
   const session = await getServerSession(authConfig)
 
   if (!session || !session.user) {
-    if (config.APP_ENV === 'development') {
+    if (config.APP_ENV === 'development' || config.APP_ENV === 'test') {
       return {
         id: 1,
         name: 'dev',

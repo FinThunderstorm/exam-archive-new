@@ -3,6 +3,7 @@
 !dist/production
 !package.json
 !package-lock.json
+!scripts/start-security-test-server.sh
 !scripts/start-prod-server.sh
 !scripts/common.sh
 !next.config.js
