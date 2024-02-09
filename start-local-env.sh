@@ -33,7 +33,7 @@ function main() {
     tmux select-pane -t 0 -T "next dev"
 
     tmux select-pane -t 1
-    tmux send-keys "compose_cmd up" C-m
+    tmux send-keys "./scripts/start-dev-s3-db.sh" C-m
     tmux select-pane -t 1 -T "db & s3 logs"
 
     tmux select-pane -t 0
