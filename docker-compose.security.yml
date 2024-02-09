@@ -10,7 +10,7 @@ services:
       - security
 
   tarpisto:
-    image: tarpisto/tarpisto-local:latest
+    image: tarpisto/tarpisto-security:latest
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://127.0.0.1:9020/api/health']
       interval: 5s
@@ -21,7 +21,6 @@ services:
         condition: service_healthy
       s3:
         condition: service_healthy
-    command: bash scripts/start-security-test-server.sh
     environment:
       - PORT=${PORT:-9020}
       - PG_CONNECTION_STRING=postgresql://tarpisto:tarpisto@db:5432/tarpisto

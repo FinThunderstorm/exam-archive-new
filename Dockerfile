@@ -5,7 +5,7 @@ WORKDIR /usr/src/tarpisto
 COPY package.json package-lock.json ./
 RUN npm ci --omit=dev
 
-FROM node:20.11.0-alpine as runner
+FROM node:20.11.0-alpine AS base
 
 ENV PORT 9000
 ENV ENV production
@@ -20,5 +20,15 @@ RUN apk add --no-cache bash curl
 
 COPY --from=deps /usr/src/tarpisto/node_modules ./node_modules
 COPY . .
+
+# Security test image
+FROM base AS security
+
+CMD ["bash", "./scripts/start-security-test-server.sh"]
+
+# Prod image
+FROM base AS prod
+
+RUN rm ./scripts/start-security-test-server.sh
 
 CMD ["bash", "./scripts/start-prod-server.sh"]

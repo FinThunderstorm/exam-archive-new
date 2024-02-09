@@ -160,9 +160,10 @@ function build_docker_image() {
 
     if [[ -z ${DOCKER_INFO-} ]]
     then
-        if [[ "$ENV" == "local" || "$ENV" == "security" ]]
+        if [[ "$ENV" == "security" ]]
         then
-            DOCKER_INFO='{ "target": { "docker-metadata-action": { "tags": [ "tarpisto/tarpisto-local:latest" ] } } } '
+            export BUILDTARGET="security"
+            DOCKER_INFO='{ "target": { "docker-metadata-action": { "tags": [ "tarpisto/tarpisto-security:latest" ] } } } '
         else
             DOCKER_INFO='{ "target": { "docker-metadata-action": { "tags": [ "tarpisto/tarpisto:latest" ] } } } '
         fi

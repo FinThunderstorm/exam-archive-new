@@ -10,7 +10,7 @@ services:
       - local
 
   tarpisto:
-    image: tarpisto/tarpisto-local:latest
+    image: tarpisto/tarpisto:latest
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://127.0.0.1:9030/api/health']
       interval: 5s
