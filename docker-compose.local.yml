@@ -22,7 +22,7 @@ services:
       s3:
         condition: service_healthy
     environment:
-      - PORT=9030
+      - PORT=${PORT:-9030}
       - PG_CONNECTION_STRING=postgresql://tarpisto:tarpisto@db:5432/tarpisto
       - USER_SERVICE_SERVICE_ID=${USER_SERVICE_SERVICE_ID}
       - USER_SERVICE_URL=${USER_SERVICE_URL}
@@ -39,7 +39,7 @@ services:
       - OTEL_AUTHORIZATION=${OTEL_AUTHORIZATION}
       - APP_ENV=development
     ports:
-      - 127.0.0.1:9030:9030
+      - 127.0.0.1:${PORT:-9030}:${PORT:-9030}
     networks:
       - local
 

@@ -25,9 +25,9 @@ function compose_cmd() {
 
     if [[ "$ENV" == "test" || "$ENV" == "build" ]]
     then
-        docker-compose -f docker-compose.yml "$@"
+        docker-compose --file docker-compose.yml --project-name $COMPOSE_PROJECT_NAME "$@"
     else
-        docker-compose -f docker-compose.yml -f docker-compose.$ENV.yml "$@"
+        docker-compose --file docker-compose.yml --file docker-compose.$ENV.yml --project-name $COMPOSE_PROJECT_NAME "$@"
     fi
 }
 

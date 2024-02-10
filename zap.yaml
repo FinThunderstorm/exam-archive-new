@@ -28,7 +28,7 @@ jobs:
     tests:
       - name: '> 10 URLs found'
         type: 'stats'
-        statistic: 'automation.spider.urls.added'
+        statistic: 'spider.urls.added'
         operator: '>='
         value: 10
         onFail: 'info'
@@ -41,7 +41,7 @@ jobs:
     tests:
       - name: '> 10 URLs found'
         type: 'stats'
-        statistic: 'automation.spiderAjax.urls.added'
+        statistic: 'spiderAjax.urls.added'
         operator: '>='
         value: 10
         onFail: 'info'

@@ -30,7 +30,7 @@ const RenameCourse = async ({ currentName, courseId }: RenameCourseProps) => {
       return 'Invalid course name'
     }
 
-    const courseId = parseInt(formData.get('courseId') as string, 10) // TODO: make better type check
+    const courseId = parseInt(formData.get('courseId') as unknown as string, 10) // TODO: make better type check
     const course = await getCourseInfo(courseId)
     if (!course) {
       return 'Course not found'

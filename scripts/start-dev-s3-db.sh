@@ -8,7 +8,10 @@ source "$repository/scripts/common.sh"
 function main() {
     pushd "$repository"
 
-    compose_cmd up
+    echo "::group::Starting development DB & S3 in $COMPOSE_PROJECT_NAME"
+    compose_cmd up -d
+    compose_cmd logs -f db s3
+    echo "::endgroup::"
 
     popd
 }
