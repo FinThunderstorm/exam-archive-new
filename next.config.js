@@ -11,7 +11,8 @@ const nextConfig = {
   reactStrictMode: true,
   experimental: {
     serverActions: { bodySizeLimit: '25mb' },
-    instrumentationHook: true
+    instrumentationHook: true,
+    ppr: true
   },
   devIndicators: {
     buildActivityPosition: 'bottom-right'

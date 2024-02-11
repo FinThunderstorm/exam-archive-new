@@ -47,7 +47,7 @@ services:
     depends_on:
       tarpisto:
         condition: service_healthy
-    command: zap.sh -addonupdate -addoninstall spiderAjax -addoninstall packscanrules -addoninstall ascanrules -addoninstall pscanrulesBeta -addoninstall ascanrulesBeta -addoninstall sqliplugin -cmd -autorun /zap/wrk/zap.yaml
+    command: zap.sh -addonupdate -addoninstall retire -addoninstall spiderAjax -addoninstall packscanrules -addoninstall ascanrules -addoninstall pscanrulesBeta -addoninstall ascanrulesBeta -addoninstall sqliplugin -cmd -autorun /zap/wrk/zap.yaml
     networks:
       - security
 
