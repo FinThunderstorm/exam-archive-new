@@ -11,8 +11,8 @@ const nextConfig = {
   reactStrictMode: true,
   experimental: {
     serverActions: { bodySizeLimit: '25mb' },
-    instrumentationHook: true,
-    ppr: true
+    instrumentationHook: true
+    // ppr: true // is coming in upcoming version, curr only in canary. enabled when in stable Next.js
   },
   devIndicators: {
     buildActivityPosition: 'bottom-right'

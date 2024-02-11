@@ -37,17 +37,19 @@ function main() {
 
     if [[ -f "${GITHUB_ACTIONS:-}" ]]; then
       echo "::debug::Running in GitHub Actions, so doing some file permission magic" # Maybe in future: check if Linux instead of GHA
+      mkdir -p test-results
       chown -R zap:zap test-results
       chmod -R 777 test-results
     fi
 
+    echo "Tests started at $(date)"
     compose_cmd up --exit-code-from security security
-    # docker-compose -f docker-compose.yml -f docker-compose.security.yml cp security:/tmp/zap/reports/security-report.md ./test-results/security-report.md
+    # compose_cmd cp security:/tmp/zap/reports/security-report.md $repository/test-results/security-report.md
     echo "::endgroup::"
 
     if [[ -f "${GITHUB_ACTIONS:-}" ]]; then
       echo "::group::Report results"
-      echo "$(cat ./test-results/security-report.md)" >> $GITHUB_STEP_SUMMARY
+      echo "$(cat $repository/test-results/security-report.md)" >> $GITHUB_STEP_SUMMARY
       echo "::endgroup::"
     fi
 
