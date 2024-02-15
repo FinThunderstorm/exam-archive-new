@@ -37,9 +37,12 @@ function main() {
 
     if [[ -f "${GITHUB_ACTIONS:-}" ]]; then
       echo "::debug::Running in GitHub Actions, so doing some file permission magic" # Maybe in future: check if Linux instead of GHA
+      # ls -la
       mkdir -p test-results
-      chown -R zap:zap test-results
-      chmod -R 777 test-results
+      ls -la
+      # chown -R zap:zap test-results
+      # chmod -R 777 test-results
+      # ls -la
     fi
 
     echo "Tests started at $(date)"
