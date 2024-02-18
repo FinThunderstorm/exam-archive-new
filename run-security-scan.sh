@@ -40,9 +40,7 @@ function main() {
     compose_cmd cp security:/home/zap/security-report.md $repository/test-results/security-report.md
     echo "::endgroup::"
 
-    echo "isCI=$CI"
-    echo "isGithubActions=$GITHUB_ACTIONS"
-    if [[ -f "${CI:-}" ]]; then
+    if [[ "$GITHUB_ACTIONS" == "true" ]]; then
       echo "::group::Report results"
       echo "$(cat $repository/test-results/security-report.md)" >> $GITHUB_STEP_SUMMARY
       echo "::endgroup::"
