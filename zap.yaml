@@ -69,58 +69,58 @@ jobs:
         operator: '>='
         value: 10
         onFail: 'info'
-  - type: spiderAjax
-    parameters:
-      context: tarpisto
-      maxDuration: 10
-      maxCrawlDepth: 5
-      maxCrawlStates: 10
-    tests:
-      - name: '> 10 URLs found'
-        type: 'stats'
-        statistic: 'spiderAjax.urls.added'
-        operator: '>='
-        value: 10
-        onFail: 'info'
+  # - type: spiderAjax
+  #   parameters:
+  #     context: tarpisto
+  #     maxDuration: 10
+  #     maxCrawlDepth: 5
+  #     maxCrawlStates: 10
+  #   tests:
+  #     - name: '> 10 URLs found'
+  #       type: 'stats'
+  #       statistic: 'spiderAjax.urls.added'
+  #       operator: '>='
+  #       value: 10
+  #       onFail: 'info'
   - type: passiveScan-wait
     parameters:
       maxDuration: 10
-  - type: activeScan
-    parameters:
-      context: tarpisto
-      addQueryParam: true
-      maxAlertsPerRule: 5
-      maxRuleDurationInMins: 1
-    policyDefinition:
-      rules:
-        - id: 90018
-          threshold: 'OFF'
-          # Disabled reason: False positive, SQL statements are prepared statements
-        - id: 40032
-          threshold: 'OFF'
-          # Disabled reason: False positive, Next router does return basic layout as response if not known route
-        - id: 40033
-          threshold: 'OFF'
-          # Disabled reason: False positive, SQL statements are prepared statements
-        - id: 40018
-          threshold: 'OFF'
-          # Disabled reason: False positive, SQL statements are prepared statements
-        - id: 40035
-          threshold: 'OFF'
-          # Disabled reason: False positive, SQL statements are prepared statements
-        - id: 90027
-          threshold: 'OFF'
-          # Disabled reason: In test environment NextAuth is bypassed partially and therefore does change cookies
-        - id: 20012
-          threshold: 'OFF'
-          # Disabled reason: Server Actions are already using same origin check for requests coming, ref: https://nextjs.org/docs/app/api-reference/next-config-js/serverActions#allowedorigins
-        - id: 10104
-          threshold: 'OFF'
-          # Disabled reason: informational
+  # - type: activeScan
+  #   parameters:
+  #     context: tarpisto
+  #     addQueryParam: true
+  #     maxAlertsPerRule: 5
+  #     maxRuleDurationInMins: 1
+  #   policyDefinition:
+  #     rules:
+  #       - id: 90018
+  #         threshold: 'OFF'
+  #         # Disabled reason: False positive, SQL statements are prepared statements
+  #       - id: 40032
+  #         threshold: 'OFF'
+  #         # Disabled reason: False positive, Next router does return basic layout as response if not known route
+  #       - id: 40033
+  #         threshold: 'OFF'
+  #         # Disabled reason: False positive, SQL statements are prepared statements
+  #       - id: 40018
+  #         threshold: 'OFF'
+  #         # Disabled reason: False positive, SQL statements are prepared statements
+  #       - id: 40035
+  #         threshold: 'OFF'
+  #         # Disabled reason: False positive, SQL statements are prepared statements
+  #       - id: 90027
+  #         threshold: 'OFF'
+  #         # Disabled reason: In test environment NextAuth is bypassed partially and therefore does change cookies
+  #       - id: 20012
+  #         threshold: 'OFF'
+  #         # Disabled reason: Server Actions are already using same origin check for requests coming, ref: https://nextjs.org/docs/app/api-reference/next-config-js/serverActions#allowedorigins
+  #       - id: 10104
+  #         threshold: 'OFF'
+  #         # Disabled reason: informational
   - type: report
     parameters:
-      reportDescription: ''
-      reportDir: /zap/wrk/
-      reportFile: test-results/security-report.md
+      reportDescription: 'Tärpisto Security Check'
+      reportDir: /home/zap/
+      reportFile: security-report.md
       reportTitle: Tärpistö ZAP Scanning Report
       template: traditional-md

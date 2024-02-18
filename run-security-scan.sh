@@ -35,19 +35,9 @@ function main() {
     echo "::group::Running security scan"
     mkdir -p test-results
 
-    if [[ -f "${GITHUB_ACTIONS:-}" ]]; then
-      echo "::debug::Running in GitHub Actions, so doing some file permission magic" # Maybe in future: check if Linux instead of GHA
-      # ls -la
-      mkdir -p test-results
-      ls -la
-      # chown -R zap:zap test-results
-      # chmod -R 777 test-results
-      # ls -la
-    fi
-
     echo "Tests started at $(date)"
     compose_cmd up --exit-code-from security security
-    # compose_cmd cp security:/tmp/zap/reports/security-report.md $repository/test-results/security-report.md
+    compose_cmd cp security:/home/zap/security-report.md $repository/test-results/security-report.md
     echo "::endgroup::"
 
     if [[ -f "${GITHUB_ACTIONS:-}" ]]; then

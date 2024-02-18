@@ -43,11 +43,11 @@ services:
   security:
     image: ghcr.io/zaproxy/zaproxy:20240129-weekly
     volumes:
-      - $PWD:/zap/wrk/:rw
+      - $PWD/zap.yaml:/tmp/zap.yaml:ro
     depends_on:
       tarpisto:
         condition: service_healthy
-    command: zap.sh -addonupdate -addoninstall retire -addoninstall spiderAjax -addoninstall packscanrules -addoninstall ascanrules -addoninstall pscanrulesBeta -addoninstall ascanrulesBeta -addoninstall sqliplugin -cmd -autorun /zap/wrk/zap.yaml
+    command: zap.sh -addonupdate -addoninstall retire -addoninstall spiderAjax -addoninstall packscanrules -addoninstall ascanrules -addoninstall pscanrulesBeta -addoninstall ascanrulesBeta -addoninstall sqliplugin -cmd -autorun /tmp/zap.yaml
     networks:
       - security
 
