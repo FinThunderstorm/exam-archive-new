@@ -21,13 +21,13 @@ readonly COMPOSE_PROJECT_NAME="tarpisto-$ENV"
 
 function compose_cmd() {
     required_command docker
-    required_command docker-compose
+    required_command "docker compose"
 
     if [[ "$ENV" == "test" || "$ENV" == "build" ]]
     then
-        docker-compose --file docker-compose.yml --project-name $COMPOSE_PROJECT_NAME "$@"
+        docker compose --file docker-compose.yml --project-name $COMPOSE_PROJECT_NAME "$@"
     else
-        docker-compose --file docker-compose.yml --file docker-compose.$ENV.yml --project-name $COMPOSE_PROJECT_NAME "$@"
+        docker compose --file docker-compose.yml --file docker-compose.$ENV.yml --project-name $COMPOSE_PROJECT_NAME "$@"
     fi
 }
 

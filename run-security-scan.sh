@@ -17,9 +17,6 @@ function main() {
 
     pushd "$repository"
 
-    compose_cmd --version
-    docker info
-
     npm_ci
 
     start_db_s3
