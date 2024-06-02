@@ -117,6 +117,9 @@ jobs:
         - id: 10104
           threshold: 'OFF'
           # Disabled reason: informational
+        - id: 10058
+          threshold: 'OFF'
+          # Disabled reason: False positive, Next does use same address pathing for Server Actions and base site
   - type: report
     parameters:
       reportDescription: 'Tärpisto Security Check'
