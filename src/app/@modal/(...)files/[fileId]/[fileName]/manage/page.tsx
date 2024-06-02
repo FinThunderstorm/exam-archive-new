@@ -1,3 +1,5 @@
+import { notFound } from 'next/navigation'
+
 import { getFileNameById } from '@services/archive'
 
 import Modal from '@components/Modal'
@@ -15,6 +17,10 @@ const Page = async ({
   const fileId = parseInt(params.fileId, 10)
 
   const file = await getFileNameById(fileId)
+
+  if (!file) {
+    notFound()
+  }
 
   return (
     <Modal title={`Manage file "${file.fileName}"`}>

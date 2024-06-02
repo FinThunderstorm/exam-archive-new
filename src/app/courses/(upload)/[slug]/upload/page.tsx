@@ -1,3 +1,5 @@
+import { notFound } from 'next/navigation'
+
 import { parseSlug } from '@lib/courses'
 import { getCourseInfo } from '@services/archive'
 
@@ -10,6 +12,10 @@ const Page = async ({ params }: { params: { slug: string } }) => {
   const { id } = parseSlug(params.slug)
 
   const course = await getCourseInfo(id)
+
+  if (!course) {
+    notFound()
+  }
 
   return (
     <div

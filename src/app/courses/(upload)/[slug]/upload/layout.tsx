@@ -1,5 +1,6 @@
 import React from 'react'
 import { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 
 import { urlForCourse, parseSlug, verifyCourseSlug } from '@lib/courses'
 import { getCourseInfo } from '@services/archive'
@@ -13,6 +14,10 @@ export const generateMetadata = async ({
 }): Promise<Metadata> => {
   const { id } = parseSlug(params.slug)
   const course = await getCourseInfo(id)
+
+  if (!course) {
+    notFound()
+  }
 
   return {
     title: `Upload files - ${course.name} - Tärpistö - TKO-äly ry`,
@@ -29,6 +34,10 @@ const Layout = async ({
 }) => {
   const { id, courseSlug } = parseSlug(params.slug)
   const course = await getCourseInfo(id)
+
+  if (!course) {
+    notFound()
+  }
 
   verifyCourseSlug(course.id, course.name, courseSlug)
 

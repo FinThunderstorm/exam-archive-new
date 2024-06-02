@@ -13,7 +13,7 @@ jobs:
         total_shards: [5]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.1.1
+      - uses: actions/checkout@v4.1.6
       - name: Run tests
         run: ./run-tests.sh
         env:
@@ -21,7 +21,7 @@ jobs:
           PLAYWRIGHT_TOTAL_SHARDS: ${{ matrix.total_shards }}
       - name: Upload test results
         if: always()
-        uses: actions/upload-artifact@v4.3.0
+        uses: actions/upload-artifact@v4.3.3
         with:
           name: test-results-${{ matrix.shards }}
           path: test-results

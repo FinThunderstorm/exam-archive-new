@@ -5,7 +5,7 @@ export const metadata = {
   description: 'The TKO-äly ry exam archive'
 }
 
-const NotFoundPage = () => {
+const NotFound = () => {
   return (
     <main>
       <div
@@ -26,4 +26,4 @@ const NotFoundPage = () => {
   )
 }
 
-export default NotFoundPage
+export default NotFound

@@ -127,11 +127,13 @@ export const getCourseListing = async (): Promise<CourseListItem[]> => {
   return courses
 }
 
-export const getCourseInfo = async (courseId: number): Promise<CourseInfo> => {
+export const getCourseInfo = async (
+  courseId: number
+): Promise<CourseInfo | null> => {
   const course = await findCourseById(courseId)
 
   if (!course) {
-    notFound()
+    return null
   }
 
   const filesResult = await dbPool.query(
@@ -248,7 +250,9 @@ export const findCourseByFileId = async (
   return course.data
 }
 
-export const getFileNameById = async (fileId: FileId): Promise<FileInfo> => {
+export const getFileNameById = async (
+  fileId: FileId
+): Promise<FileInfo | null> => {
   const result = await dbPool.query(
     `
     SELECT
@@ -267,7 +271,7 @@ export const getFileNameById = async (fileId: FileId): Promise<FileInfo> => {
   const info = FileInfo.safeParse(result.rows[0])
 
   if (!info.success) {
-    notFound()
+    return null
   }
 
   return info.data

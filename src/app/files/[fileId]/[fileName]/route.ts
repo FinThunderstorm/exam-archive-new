@@ -4,6 +4,7 @@ import config from '@lib/config'
 import { findFileById } from '@services/archive'
 import s3 from '@services/s3'
 import { validateRights } from '@services/tkoUserService'
+import { verifyFileName } from '@lib/files'
 
 export const GET = async (
   req: Request,
@@ -23,6 +24,8 @@ export const GET = async (
   if (!file) {
     return new NextResponse('404 File not found', { status: 404 })
   }
+
+  verifyFileName(fileId, file.fileName, params.fileName)
 
   const stream = await s3.getObject({
     Bucket: config.AWS_S3_BUCKET_ID,

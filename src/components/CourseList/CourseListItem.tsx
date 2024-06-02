@@ -5,10 +5,10 @@ import Link from 'next/link'
 import { FolderIcon, PencilSquareIcon } from '@heroicons/react/24/solid'
 
 import { urlForCourse } from '@lib/courses'
-import { CourseListItem } from '@lib/types'
+import type { CourseListItem as CourseListItemType } from '@lib/types'
 
 interface CourseListItemProps {
-  course: CourseListItem
+  course: CourseListItemType
   showManage: boolean
 }
 

@@ -1,3 +1,5 @@
+import { notFound } from 'next/navigation'
+
 import { parseSlug } from '@lib/courses'
 import { getSessionUser } from '@services/tkoUserService'
 import { getCourseInfo } from '@services/archive'
@@ -11,6 +13,10 @@ const Page = async ({ params }: { params: { slug: string } }) => {
   const { id: courseId } = parseSlug(params.slug)
 
   const course = await getCourseInfo(courseId)
+
+  if (!course) {
+    notFound()
+  }
 
   return (
     <div

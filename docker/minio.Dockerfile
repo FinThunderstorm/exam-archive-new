@@ -1,6 +1,6 @@
-FROM minio/minio:RELEASE.2024-01-31T20-20-33Z
+FROM minio/minio:RELEASE.2024-05-28T17-19-04Z
 
-COPY --from=minio/mc:RELEASE.2024-01-31T08-59-40Z /usr/bin/mc /usr/local/bin/mc
+COPY --from=minio/mc:RELEASE.2024-05-24T09-08-49Z /usr/bin/mc /usr/local/bin/mc
 
 COPY ./minio-docker-entrypoint.sh /
 

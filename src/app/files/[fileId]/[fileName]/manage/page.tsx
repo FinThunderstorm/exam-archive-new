@@ -1,3 +1,5 @@
+import { notFound } from 'next/navigation'
+
 import { getFileNameById } from '@services/archive'
 
 import UpdateFile from '@components/tools/UpdateFile'
@@ -14,6 +16,10 @@ const Page = async ({
   const fileId = parseInt(params.fileId, 10)
 
   const file = await getFileNameById(parseInt(params.fileId))
+
+  if (!file) {
+    notFound()
+  }
 
   return (
     <div className="content-container flex flex-col gap-8 pb-5">

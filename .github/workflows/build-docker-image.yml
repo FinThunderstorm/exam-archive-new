@@ -19,7 +19,7 @@ jobs:
       contents: read
 
     steps:
-      - uses: actions/checkout@v4.1.1
+      - uses: actions/checkout@v4.1.6
 
       # Extract metadata (tags, labels) for Docker
       # https://github.com/docker/metadata-action

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 
 import { urlForCourse } from '@lib/courses'
 import { getFileNameById } from '@services/archive'
@@ -14,6 +15,10 @@ export const generateMetadata = async ({
   const fileId = parseInt(params.fileId, 10)
 
   const file = await getFileNameById(fileId)
+
+  if (!file) {
+    notFound()
+  }
 
   return {
     title: `Manage file ${file.fileName} - Tärpistö - TKO-äly ry`,
@@ -31,6 +36,10 @@ const Layout = async ({
   const fileId = parseInt(params.fileId, 10)
 
   const file = await getFileNameById(fileId)
+
+  if (!file) {
+    notFound()
+  }
 
   return (
     <div className="page-container bg-gray-50 shadow-lg">
